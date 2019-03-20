@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Login form
+        </title>
+    </head>
+<body>
+<div class="SignUp" id="SignUp">
+    
+    <form method="POST" action="http://192.168.100.125:3001/signup" style="border:1px solid #ccc" enctype="multipart/form-data" >
+    <div class="container">
+        <label for="name"><b>Full Name</b></label>
+        <input type="text" placeholder="FullName" name="name" required>
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" required>
+        <input type="file" name="avatar" required><br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password"  placeholder="Enter Password" id="password" name ="psw" size = 25 required>
+
+        <label for="psw-repeat"><b>Repeat Password</b></label>
+        <input type="password" id="myInput" placeholder="Repeat Password" id="confirm_password" name="psw-repeat" size = 25 required>
+        <input type="checkbox" onclick="mypsw()">Show Password
+        <!---
+        <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label>
+        
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+      -->
+        <div class="clearfix">
+        <button type="button" class="cancelbtn" onclick="myFunction(2)">Login</button>
+        <button type="submit" class="signupbtn" onSubmit = "checkPassword(this)">Sign Up</button>
+        </div>
+    </div>
+    </form>
+</div>
+<div class="Login" id="Login">
+        <form method="POST" action="http://192.168.100.125:3001/login" style="border:1px solid #ccc">
+            <div class="container">
+              <h1>Login</h1> 
+              <p style="color:'red';"><%= typeof errorl==='undefined'?"":errorl %></p>   
+              <label for="uname"><b>Username</b></label>
+              <input type="email" placeholder="Enter Username" name="email" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" id="myInput" placeholder="Enter Password" name="psw" required>
+              <input type="checkbox" onclick="mypsw()">Show Password 
+              <!----<label>
+                    <input type="checkbox" checked="checked" name="remember"> Remember me  
+                </label>-->
+              <div class="clearfix">   
+              <button type="submit" class="signupbtn">Login</button>
+              <button type="button" class="cancelbtn" onclick="myFunction(1)">SighUp</button>
+              <!-----</div>
+              <span class="psw">Forgot <a href="#">password?</a></span>
+              
+            </div>-->
+            <br>
+          
+          </form>
+</div>
+
+
+<script> 
+ var password = document.getElementById("password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+function myFunction(n) {
+  if(n==1){
+  document.getElementById("SignUp").style.display = "block";
+  document.getElementById("Login").style.display = "none";
+  }
+  if(n==2){
+  document.getElementById("SignUp").style.display = "none";
+  document.getElementById("Login").style.display = "block";
+  }
+}
+function mypsw() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+} 
+
+</script> 
+
+</body>
+</html>
